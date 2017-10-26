@@ -8,7 +8,7 @@ import {Note} from "../note";
     <ul class="note-list">
       <li *ngFor="let note of notes">
         <div class="view">
-          <label>{{note.title}}</label>
+            <label>{{note.id}}. {{note.title}} : {{note.text}}</label>
         </div>
       </li>
     </ul>
