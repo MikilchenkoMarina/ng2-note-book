@@ -8,6 +8,7 @@ export class NoteDataService {
 
   constructor(private api: ApiService) {
   }
+
   // Simulate GET /notes
   getAllNotes(): Observable<Note[]> {
     return this.api.getAllNotes();
@@ -16,6 +17,11 @@ export class NoteDataService {
   // Simulate POST /notes
   addNote(note: Note): Observable<Note> {
     return this.api.createNote(note);
+  }
+
+  // Simulate DELETE /notes
+  deleteNoteById(noteId: number): Observable<Note> {
+    return this.api.deleteNoteById(noteId);
   }
 
 }

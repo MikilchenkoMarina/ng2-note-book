@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {Note} from "../note";
 
 @Component({
@@ -8,18 +8,26 @@ import {Note} from "../note";
     <ul class="note-list">
       <li *ngFor="let note of notes">
         <div class="view">
-          <label>{{note.title}}</label>
+            <label>{{note.id}}. {{note.title}} : {{note.text}}</label>
+            <button class = "destroy-button" (click) ="deleteNoteById(note)"> </button>
         </div>
       </li>
     </ul>
   </section>
 `,
-  styleUrls: ['./note-list.component.css']
+  styleUrls: ['../styles.css']
 })
 export class NoteListComponent {
   @Input()
   notes: Note[];
 
+  @Output()
+  removeNote: EventEmitter<Note> = new EventEmitter();
+
   constructor() {
+  }
+
+  public deleteNoteById(note: Note) {
+    this.removeNote.emit(note);
   }
 }
