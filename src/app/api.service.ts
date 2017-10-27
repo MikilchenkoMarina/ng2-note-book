@@ -30,6 +30,12 @@ export class ApiService {
         return new Note(response.json());
       }).catch(this.handleError);
   }
+  public deleteNoteById(noteId: number):Observable<null>{
+    return this.http
+      .delete(API_URL + '/notes/' + noteId)
+      .map(response => null)
+      .catch(this.handleError);
+  }
 
 
   private handleError(error: Response | any) {

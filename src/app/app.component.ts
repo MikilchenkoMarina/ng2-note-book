@@ -7,8 +7,10 @@ import {Note} from "./note";
   template: `
 <section class="noteapp">
     <h1>My Notes</h1>
-  <app-note-add (add)="onAddNote($event)"></app-note-add>
-  <app-note-list [notes]="notes" ></app-note-list>
+    <div>
+  <app-note-add (add)="onAddNote($event)" (alert)="onAlert($event)"></app-note-add>
+  <app-note-list [notes]="notes" (removeNote)="onRemove($event)" ></app-note-list>
+  </div>
 </section>
 `,
   styleUrls: ['styles.css'],
@@ -30,7 +32,7 @@ export class AppComponent implements OnInit {
       )
   }
 
-  onAddNote(note) {
+onAddNote(note) {
     this.noteDataService
       .addNote(note)
       .subscribe(
@@ -38,5 +40,19 @@ export class AppComponent implements OnInit {
           this.notes = this.notes.concat(newNote);
         }
       );
+  }
+
+  onRemove(note) {
+    this.noteDataService
+      .deleteNoteById(note.id)
+      .subscribe(
+        (_) => {
+          this.notes = this.notes.filter((t) => t.id !== note.id);
+        }
+      );
+  }
+
+ onAlert(string:string){
+    alert(string)
   }
 }
