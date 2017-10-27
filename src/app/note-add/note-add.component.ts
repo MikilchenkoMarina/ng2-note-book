@@ -7,7 +7,7 @@ import {Note} from "../note";
    <p>
   <input  class = "new-note" placeholder="Note's title" autofocus="" [(ngModel)]="newNote.title">
   <input  class = "new-note" placeholder="Note's text" autofocus="" [(ngModel)]="newNote.text">
-  <button class = "add-button"(click)="addNote()"> Save Note </button>
+  <button class = "add-button" (click)="addNote()"> Save Note </button>
   </p>
 `,
   styleUrls: ['../styles.css']
